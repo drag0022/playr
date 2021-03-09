@@ -1,0 +1,207 @@
+//VARIABLES
+$topNavBottomMargin: 12px;
+$iOSdarkbackground: rgb(41, 41, 41);
+$iOStopMenuBackground: rgb(29, 29, 29);
+$iOSlabelbackground: #E5E5EA;
+$iOScontainerPadding: 0 14px;
+$iOSbuttonColor: #007AFF;
+
+
+// PLAYER CONTROLS SVG CLASSES
+.playButton{
+    background-image: url("data:image/svg+xml,%3Csvg width='35.5' height='40' viewBox='0 0 71 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.66849 80C7.59001 80 9.1272 79.2262 11.0487 78.1621L65.7158 46.3362C69.6549 44.0146 71 42.4668 71 40.0484C71 37.63 69.6549 35.9855 65.7158 33.7606L11.0487 1.83799C9.1272 0.773906 7.59001 0 5.66849 0C2.20977 0 0 2.61185 0 6.77147V73.2285C0.0960757 77.2914 2.20977 80 5.66849 80Z' fill='%23010101'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 40px;
+    padding: 0 1rem;
+}
+.pauseButton{
+    background-image: url("data:image/svg+xml,%3Csvg width='35.5' height='40' viewBox='0 0 57 76' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.21645 76H16.8322C20.849 76 23.0486 73.8969 23.0486 69.7862V6.21384C23.0486 2.00755 20.9446 0 16.8322 0H6.21645C2.19967 0 0 2.10314 0 6.21384V69.7862C0 73.8969 2.19967 76 6.21645 76ZM40.1678 76H50.7836C54.896 76 57 73.8969 57 69.7862V6.21384C57 2.00755 54.896 0 50.7836 0H40.1678C36.0554 0 33.9514 2.10314 33.9514 6.21384V69.7862C33.9514 73.8969 36.0554 76 40.1678 76Z' fill='%23010101'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 40px;
+    padding: 0 1rem;
+}
+.backwardsButton{
+    background-image: url("data:image/svg+xml,%3Csvg width='64.5' height='37' viewBox='0 0 129 74' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.8773 73.9034C61.5246 73.9034 64.596 71.1019 64.596 65.8852V38.7389C65.0759 40.7676 66.6116 42.4099 69.1071 43.9556L116.906 72.2611C118.826 73.4204 120.362 74 122.281 74C125.929 74 129 71.1984 129 65.9817V8.01827C129 2.80156 125.929 0 122.281 0C120.362 0 118.826 0.579623 116.906 1.73889L69.1071 30.0444C66.5156 31.5901 65.0759 33.2324 64.596 35.2611V8.11485C64.596 2.89814 61.5246 0.0965822 57.8773 0.0965822C55.9576 0.0965822 54.4219 0.676205 52.5023 1.83547L4.70315 30.141C1.34377 32.1697 0 34.3916 0 37.0966C0 39.8015 1.43976 42.1201 4.70315 44.1489L52.5023 72.4543C54.4219 73.3238 55.9576 73.9034 57.8773 73.9034Z' fill='%23010101'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    width: 65px;
+    height: 37px;
+    padding-right: 4rem;
+}
+.forwardsButton{
+    background-image: url("data:image/svg+xml,%3Csvg width='64.5' height='37' viewBox='0 0 129 74' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.72076 74C8.64038 74 10.272 73.4226 12.0957 72.2679L59.894 44.0728C62.4855 42.5331 63.9251 40.8973 64.405 38.8765V65.9168C64.405 71.1131 67.4764 73.9037 71.1237 73.9037C73.0433 73.9037 74.675 73.3264 76.4986 72.1716L124.297 43.9766C127.56 41.9558 129 39.7425 129 36.9519C129 34.2575 127.56 31.948 124.297 30.0234L76.4986 1.82837C74.579 0.673625 73.0433 0.0962641 71.1237 0.0962641C67.4764 0.0962641 64.405 2.88689 64.405 8.08325V35.1235C63.9251 33.1027 62.4855 31.4669 59.894 29.9272L12.0957 1.73211C10.176 0.577361 8.64038 0 6.72076 0C3.0735 0 0.00212615 2.79062 0.00212615 7.98698V65.7243C-0.0938544 71.2093 3.0735 74 6.72076 74Z' fill='%23010101'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    width: 64.5px;
+    height: 37px;
+    padding-left: 4rem;
+}
+
+//DEFAULT CSS
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a,p{
+    text-decoration: none;
+    color: #fff;
+}
+html{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: $iOStopMenuBackground;
+    font-size: 17px;
+    color: black;
+}
+.app{
+    background-color: $iOSdarkbackground;
+}
+body{
+    max-height: 100vh;
+    overflow: hidden;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+//PAGE NAVIGATION
+[data-role='page']{
+    z-index: 1;
+}
+[data-role='page'].active{
+    z-index: 10;
+    min-height: 100vh;
+}
+//TOP MENU
+.topNav{
+    
+    min-height: 82px;
+    width: 100%;
+    background-color: $iOStopMenuBackground;
+    
+}
+.appTitle{
+    font-weight: 600;
+    color: white;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 15px;
+    margin-bottom: $topNavBottomMargin;
+}
+
+.title{
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    padding: $iOScontainerPadding
+}
+
+//PAGE BODY
+.pageBody{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: $iOScontainerPadding;
+    overflow: scroll;
+}
+.cardParent{
+    max-width: 40%;
+    height: auto;
+    margin-top: .5rem;
+}
+#image{
+    max-width: 139px;
+    height: 139px;
+    border-radius: 22px;
+}
+p{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    
+}
+.songTitle{
+    font-size: .9rem;
+}
+.songAlbum{
+    font-size: .8rem;
+}
+.songDescriptionContainer{
+    line-height: 22px;
+}
+
+//PLAYER
+#player{
+    background-color: rgba(72,72,74, 0.95);
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    min-height: 95vh;
+}
+.playerUp{
+    transform: translateY(-740px);
+    transition: transform .4s;
+}
+.playerDown{
+    transform: translateY(0px);
+    transition: transform .4s;
+}
+.playerControlsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+.playerSongArtContainer{
+    width: 100%;
+    height: 47vh;
+}
+.playerSongArtContainer > #image{
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 2rem 0 1rem;
+}
+.playerSongDescriptionContainer{
+    padding: $iOScontainerPadding;
+}
+
+
+//song playing animation
+.songPlaying {
+    box-shadow: 0 0 0 #fff;
+    animation: pulse .4s infinite;
+}
+
+@keyframes pulse{
+    0%{
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70%{
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+    100%{
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+
+//SONG SLIDER
+.songSliderContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20px;
+    margin: 0 auto;
+    margin-top: 2.5rem;
+}
+.songSlider{
+    width: 80%;
+    height: 10px;
+    margin: 0 auto;
+    border-radius: 25px;
+    margin-top: 7px;
+}
+.songCurrentTime{
+    width: 10%;
+    margin-right: 1rem;
+}
+.songLength{
+    width: 10%;
+    margin-right: 1rem;
+}
