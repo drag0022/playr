@@ -95,10 +95,12 @@ const APP = {
         document.querySelectorAll('.cardContainer').forEach(card => {
             card.addEventListener('click', APP.playSong)
         })
-
-        document.querySelector('.backwardsButton').addEventListener('click', APP.mediaRewind)
-        document.querySelector('.forwardsButton').addEventListener('click', APP.mediaForward)
+        if(document.querySelector('.backwardsButton')){
+            document.querySelector('.backwardsButton').addEventListener('click', APP.mediaRewind)
+            document.querySelector('.forwardsButton').addEventListener('click', APP.mediaForward)
+        }
     },
+    
     buildTrackHTML(song){
         const pageBody = document.querySelector('#home > .pageBody')
         const df = new DocumentFragment()
@@ -119,18 +121,18 @@ const APP = {
         pageBody.append(df)
     },
     playSong(ev){
-        //Slide player from bottom of page
-        APP.playerAnimation()
+        if (APP.media){ // if song is already playing, stop it
+            APP.media.stop()
+        }
+        songId = null
         //get song ID and build HTML
-        let songId = null
-        if(ev){
+        if(ev){ // if a song card is pressed
+            APP.playerAnimation() // slide animation from bottom
             songId = parseInt(ev.currentTarget.dataset.id)
             const song = APP.tracks.find(song => song.id === songId)
             APP.song = song
-            console.log(APP.song)
         } else {
             songId = APP.song.id
-            console.log(APP.song)
         }
         APP.buildPlayerHTML()
         document.querySelector('.backwardsButton').addEventListener('click', APP.mediaRewind)
@@ -138,7 +140,6 @@ const APP = {
         //mount media
         APP.mountMedia()
         APP.mediaPlay()
-        APP.songSlider()
         //switch from play button to pause 
         const playButton = document.querySelector('.playButton')
         playButton.classList.remove('playButton')
@@ -169,9 +170,6 @@ const APP = {
         })
     },
     buildPlayerHTML(){
-        if (APP.media){ // if song is already playing, stop it
-            APP.media.stop()
-        }
         const pageBody = document.querySelector('#player > .pageBody')
         pageBody.innerHTML= ""
         const playerContainer = document.createElement('div')
@@ -198,8 +196,12 @@ const APP = {
                                     </div>`
         df.append(playerContainer)
         pageBody.append(df)
+        APP.songSlider()
     },
     mountMedia(){
+        if(APP.media){
+            APP.media.stop()
+        } //if song is already playing, stop it before mounting new song
         APP.media = new Media(
             APP.song.path, 
             APP.songPlayingSuccess, 
@@ -230,11 +232,11 @@ const APP = {
             const minPosition = 0
             const newPosition = Math.max(minPosition, currentPosition - 10)
             APP.media.seekTo(newPosition * 1000)
-            if(APP.currentTime - 10 <= 0) APP.currentTime -= 10
+            if(APP.currentTime - 10 >= 0) APP.currentTime -= 10
         })
     },
     playNext(){
-            // when song is over
+            
             APP.tracks.forEach((track, index) => {  // find song position in original track list
                 if (APP.song.id === track.id){
                     console.log({track, index})
@@ -246,28 +248,8 @@ const APP = {
                 
             })
     },
-    songPlayingSuccess() {
-        console.log('playing song')
-    },
-    songPlayingError(err) {
-        console.log({err})
-    },
-    songStatus(status){
-        console.log(status)
-    },
-    convertTime(time){
-        const minutes= Math.floor(time / 60)
-        const seconds = time % 60
-        if (seconds >= 10){
-            return `${minutes}:${seconds}`
-        } else {
-            return `${minutes}:0${seconds}`
-        }
-    },
     songSlider(){
         const songLength = document.querySelector('.songLength')
-        
-        console.log(APP.song)
         APP.currentTime = 0
         const songCurrentTime = document.querySelector('.songCurrentTime')
         const slider = document.querySelector('.songSlider')
@@ -286,6 +268,24 @@ const APP = {
             }
         }, 1000)
     
+    },
+    songPlayingSuccess() {
+        console.log('playing song')
+    },
+    songPlayingError(err) {
+        console.log({err})
+    },
+    songStatus(status){
+        console.log(status)
+    },
+    convertTime(time){
+        const minutes= Math.floor(time / 60)
+        const seconds = time % 60
+        if (seconds >= 10){
+            return `${minutes}:${seconds}`
+        } else {
+            return `${minutes}:0${seconds}`
+        }
     }
 } 
 
